@@ -1,0 +1,10 @@
+.Container {
+  margin: 0px 100px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.ContainerHeading {
+  font-weight: 600;
+  font-size: 40px;
+}
