@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styles from '../Styles.module.css';
     
 class ContactForm extends Component {
     state = {
@@ -24,9 +25,9 @@ class ContactForm extends Component {
 
     
     render() {
-         const { name, number } = this.state;
+        const { name, number } = this.state;
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form className={styles.boxFrame} onSubmit={this.handleSubmit}>
                 <label>Name<br />
                     <input
                         type="text"

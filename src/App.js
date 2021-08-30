@@ -17,6 +17,20 @@ class App extends Component {
     filter: '',
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+    if (parsedContacts) {
+      this.setState({contacts:parsedContacts});
+    }
+  }
+
   addContact = ({ name, number }) => {
     if (this.state.contacts.find((contact) => contact.name === name)) {
       alert(`${name} already in contacts`);
@@ -63,12 +77,14 @@ class App extends Component {
         </div>
         <div>
           <h2 className={styles.ContainerHeading}>Contacts</h2>
+          <div className={styles.boxFrame}>
           <Filter
             filter={filter}
             handleChange={this.filterChange} />
           <ContactList
             contacts={contacts}
-            onDeleteContact={this.deleteContact} />
+              onDeleteContact={this.deleteContact} />
+            </div>
         </div>
       </div>
     )
